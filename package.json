@@ -1,6 +1,6 @@
 {
   "name": "rtc-screenshare-extension",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "description": "The chrome extension companion for the rtc-screenshare package",
   "private": true,
   "scripts": {
