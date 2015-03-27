@@ -19,7 +19,7 @@ extension.on('share', function(opts, port, callback) {
         return callback(new Error(chrome.runtime.lastError.message));
       }
 
-      callback(null, id, rid);
+      callback(null, id);
     }
   );
 });
