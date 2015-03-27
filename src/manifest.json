@@ -17,7 +17,7 @@
   "permissions": [
     "desktopCapture",
     "https://*.rtc.io/*",
-    "https://*.rtc.io/*"
+    "http://*.rtc.io/*"
   ],
 
   "content_scripts": [{
