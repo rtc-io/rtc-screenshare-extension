@@ -23,7 +23,7 @@
   "homepage": "https://github.com/rtc-io/rtc-screenshare-extension",
   "devDependencies": {
     "browserify": "^9.0.3",
-    "chromex": "^1.0.4",
+    "chromex": "^1.1.0",
     "cog": "^1.0.0",
     "gulp": "^3.8.10",
     "gulp-help": "^1.3.1",
