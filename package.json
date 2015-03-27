@@ -2,7 +2,7 @@
   "name": "rtc-screenshare-extension",
   "version": "1.0.0",
   "description": "The chrome extension companion for the rtc-screenshare package",
-  "main": "gulpfile.js",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
