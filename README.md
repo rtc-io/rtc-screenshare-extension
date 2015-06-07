@@ -2,6 +2,23 @@
 
 These are the chrome extension source files and build process that can be used to create your own custom extension.
 
+do
+```
+git clone https://github.com/rtc-io/rtc-screenshare-extension.git
+npm install
+```
+
+edit src/manifest.json
+
+and Change the http://*.rtc.io/* to your needs.
+after that change back to the main directory and run
+```
+gulp package
+```
+
+go to https://chrome.google.com/webstore/developer/dashboard
+and upload the build.zip
+
 ## License(s)
 
 ### Apache 2.0
