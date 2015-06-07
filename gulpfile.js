@@ -6,22 +6,26 @@ var path = require('path');
 var extensionPath = path.resolve(__dirname, 'extension');
 var browserify = require('browserify');
 var transform = require('vinyl-transform');
+var through2 = require('through2');
 
 gulp.task('default', ['build']);
 gulp.task('build', 'Rebuild the extension files', ['extension-assets', 'extension-browserify']);
 
 gulp.task('extension-browserify', 'Browserify the extension files', ['prepare'], function() {
-  var browserified = transform(function(filename) {
-    var b = browserify(filename);
-    return b.bundle();
-  });
-
-  return gulp.src([
-    './src/index.js'
-  ])
-  .pipe(browserified)
-  .pipe(gulp.dest('./dist'));
+  
+  gulp.src('./src/index.js')
+    .pipe(through2.obj(function (file, enc, next){
+            browserify(file.path)
+                .bundle(function(err, res){
+                    // assumes file.contents is a Buffer
+                    file.contents = res;
+                    next(null, file);
+                });
+        }))
+    .pipe(gulp.dest('./dist'))
 });
+
+
 
 gulp.task('extension-assets', 'Copy the extension source assets into the dist folder', ['prepare', 'chromex-assets'], function() {
   return gulp.src([
