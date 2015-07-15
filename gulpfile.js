@@ -5,21 +5,24 @@ var rimraf = require('rimraf');
 var path = require('path');
 var extensionPath = path.resolve(__dirname, 'extension');
 var browserify = require('browserify');
-var transform = require('vinyl-transform');
+var through2 = require('through2');
 
 gulp.task('default', ['build']);
 gulp.task('build', 'Rebuild the extension files', ['extension-assets', 'extension-browserify']);
 
 gulp.task('extension-browserify', 'Browserify the extension files', ['prepare'], function() {
-  var browserified = transform(function(filename) {
-    var b = browserify(filename);
-    return b.bundle();
-  });
+
+  function browserified(file, enc, next) {
+    browserify(file.path).bundle(function(err, res){
+      file.contents = res;
+      next(null, file);
+    });
+  }
 
   return gulp.src([
     './src/index.js'
   ])
-  .pipe(browserified)
+  .pipe(through2.obj(browserified))
   .pipe(gulp.dest('./dist'));
 });
 
